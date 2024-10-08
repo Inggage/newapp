@@ -1,10 +1,15 @@
 steps:
   # Step 1: Install dependencies
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'  
-    entrypoint: 'npm start'
-    args: ['-c', 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy']
-options:
-  logging: CLOUD_LOGGING_ONLY  # or NONE
+  - name: 'node:14'  # Use the official Node.js image
+    entrypoint: 'npm'
+    args: ['install']
+
+
+    # Step 3: Deploy to Google App Engine
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'  # Use Google Cloud SDK to deploy
+    entrypoint: 'gcloud'
+    args: ['app', 'deploy', '--quiet']
+
 
 
 timeout: '1600s'
