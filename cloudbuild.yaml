@@ -1,14 +1,14 @@
 steps:
  # Step 1: Install dependencies
-  - name: 'node:14'  # Use the official Node.js image
-    entrypoint: 'npm'
+  - name: 'node:20'  # Use the official Node.js image
+    entrypoint: 'npm start'
     args: ['install']
 
 
     # Step 3: Deploy to Google App Engine
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'  # Use Google Cloud SDK to deploy
     entrypoint: 'gcloud'
-    args: ['app', 'deploy', '--quiet']
+    args: ['app', 'deploy']
 options:
   logging: CLOUD_LOGGING_ONLY  # or NONE
 
