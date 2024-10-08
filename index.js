@@ -12,8 +12,30 @@ app.listen(PORT, () => {
 });
 
 app.use("/", (req, res) => {
-    res.json({
-      status: "APi is working fine",
-      code: 200,
-    });
-  });
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>API Status</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f0;
+          color: #333;
+          text-align: center;
+          padding: 50px;
+        }
+        h1 {
+          color: #4CAF50;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>API is working fine</h1>
+      <p>Status Code: 200</p>
+    </body>
+    </html>
+  `);
+});
