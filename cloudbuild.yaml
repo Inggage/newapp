@@ -1,8 +1,8 @@
 steps:
  # Step 1: Install dependencies
   - name: 'node:20'  # Use the official Node.js image
-    entrypoint: 'npm start'
-    args: ['install']
+    entrypoint: 'npm'
+    args: ['install','start','build']
 
 
     # Step 3: Deploy to Google App Engine
