@@ -18,8 +18,8 @@ steps:
           ]
     
 substitutions:
-  _IMAGE_NAME:newapp
-  _PROJECT_ID:inggage-primary
+   _IMAGE_NAME: newapp
+   _PROJECT_ID: inggage-primary
 
 options:
   logging: CLOUD_LOGGING_ONLY  # or NONE
