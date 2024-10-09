@@ -1,11 +1,11 @@
 steps:
-  - name: 'gcr.io/cloudbuild/docker'
+  - name: 'gcr.io/v2/cloudbuild/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_IMAGE_NAME}/newapp', '.']
   
-  - name: 'gcr.io/cloudbuild/docker'
+  - name: 'gcr.io/v2/cloudbuild/docker'
     args: ['push', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_IMAGE_NAME}/newapp']
 
-  - name: 'gcr.io/cloudbuild/gcloud'
+  - name: 'gcr.io/v2/cloudbuild/gcloud'
     args: [
       
             'run',
