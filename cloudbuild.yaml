@@ -1,19 +1,28 @@
 steps:
- # Step 1: Install dependencies
-  - name: 'node:20'  # Use the official Node.js image
-    entrypoint: 'npm'
-    args: ['install','start','build']
+  - name: 'gcr.io/cloudbuild/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_IMAGE_NAME}/newapp', '.']
+  
+  - name: 'gcr.io/cloudbuild/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_IMAGE_NAME}/newapp']
 
+  - name: 'gcr.io/cloudbuild/gcloud'
+    args: [
+      
+            'run',
+            'deploy',
+            'newapp',
+            'us-central1-docker.pkg.dev/${_PROJECT_ID}/${_IMAGE_NAME}/newapp',
+            '--region',
+            'us-central1',
+            '--allow-unauthenticated'
+          ]
+    
+substitutions:
+  _IMAGE_NAME:newapp
+  _PROJECT_ID:inggage-primary
 
-    # Step 3: Deploy to Google App Engine
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'  # Use Google Cloud SDK to deploy
-    entrypoint: 'gcloud'
-    args: ['app', 'deploy']
 options:
   logging: CLOUD_LOGGING_ONLY  # or NONE
 
 
 timeout: '1600s'
-
-
- 
